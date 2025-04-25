@@ -94,14 +94,15 @@ const isValidMove = (fromRow, fromCol, toRow, toCol) => {
     case '象':
       // 相/象走田字，不能过河，不能塞象眼
       if (isRedPiece(piece)) {
-        if (toRow < 5) return false
+        if (toRow < 5) return false // 红相不能过河
       } else {
-        if (toRow > 4) return false
+        if (toRow > 4) return false // 黑象不能过河
       }
       if (Math.abs(rowDiff) !== 2 || Math.abs(colDiff) !== 2) return false
       return !hasElephantEye(fromRow, fromCol, toRow, toCol)
 
     case '馬':
+    case '傌':
       // 马走日，不能蹩马腿
       if ((Math.abs(rowDiff) === 2 && Math.abs(colDiff) === 1) || 
           (Math.abs(rowDiff) === 1 && Math.abs(colDiff) === 2)) {
